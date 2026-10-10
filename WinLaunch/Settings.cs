@@ -165,8 +165,8 @@ namespace WinLaunch
             SortItemsAlphabetically = false;
             SortFoldersFirst = false;
 
-            CheckForUpdatesFrequently = true;
-            CheckForUpdates = true;
+            CheckForUpdatesFrequently = false;
+            CheckForUpdates = false;
             UpdateSilently = false;
 
             WatchForDesktopLinks = true;
