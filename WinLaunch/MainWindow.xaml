@@ -349,6 +349,35 @@
                 Stretch="Fill" />
         </Grid>
 
+        <!-- ClassicLaunch: non-interactive iOS 4-inspired glass shelf behind game icons. -->
+        <Grid IsHitTestVisible="False" ClipToBounds="True">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#00000000" Offset="0" />
+                    <GradientStop Color="#14000014" Offset="0.7" />
+                    <GradientStop Color="#34060E1B" Offset="1" />
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <Border Height="114" Margin="0,0,0,0"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                    BorderThickness="0,1,0,0" BorderBrush="#91FFFFFF">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#83EBF4FD" Offset="0" />
+                        <GradientStop Color="#7694A6BE" Offset="0.12" />
+                        <GradientStop Color="#82616E86" Offset="0.51" />
+                        <GradientStop Color="#B91C2739" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="14" ShadowDepth="0" Opacity="0.3" Color="#000000" />
+                </Border.Effect>
+            </Border>
+            <Border Height="45" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                    Background="#185C718A" />
+        </Grid>
+
         <Canvas x:Name="MainCanvas"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
