@@ -70,7 +70,7 @@ namespace WinLaunch
         #region Mutex
 
         private Mutex mutex;
-        private string MutexName = "_WinLaunchMutex_";
+        private string MutexName = "_ClassicLaunchMutex_";
 
         private void SetMutex()
         {
@@ -120,8 +120,7 @@ namespace WinLaunch
 
             PortabilityManager.Init();
 
-            //show eula
-            Eula.ShowEULA();
+            // The repository is MIT licensed. Do not require the legacy restrictive EULA.
 
             Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
 
