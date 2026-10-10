@@ -21,7 +21,7 @@ namespace WinLaunch
                     return Path.Combine(PortableDirectory, "Items.xml");
                 }
 
-                return System.IO.Path.Combine(new string[] { Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinLaunch", "Items.xml" });
+                return System.IO.Path.Combine(new string[] { Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ClassicLaunch", "Items.xml" });
             }
         }
 
@@ -34,7 +34,7 @@ namespace WinLaunch
                     return Path.Combine(PortableDirectory, "Settings.xml");
                 }
 
-                return System.IO.Path.Combine(new string[] { Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinLaunch", "Settings.xml" });
+                return System.IO.Path.Combine(new string[] { Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ClassicLaunch", "Settings.xml" });
             }
         }
 
@@ -47,7 +47,7 @@ namespace WinLaunch
                     return Path.Combine(PortableDirectory, "CurrentTheme");
                 }
 
-                return System.IO.Path.Combine(new string[] { Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinLaunch", "CurrentTheme" });
+                return System.IO.Path.Combine(new string[] { Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ClassicLaunch", "CurrentTheme" });
             }
         }
 
@@ -60,7 +60,7 @@ namespace WinLaunch
                     return Path.Combine(PortableDirectory, "LinkCache");
                 }
 
-                return System.IO.Path.Combine(new string[] { Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinLaunch", "LinkCache" });
+                return System.IO.Path.Combine(new string[] { Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ClassicLaunch", "LinkCache" });
             }
         }
 
@@ -73,7 +73,7 @@ namespace WinLaunch
                     return Path.Combine(PortableDirectory, "IconCache");
                 }
 
-                return System.IO.Path.Combine(new string[] { Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinLaunch", "IconCache" });
+                return System.IO.Path.Combine(new string[] { Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ClassicLaunch", "IconCache" });
             }
         }
 
@@ -92,7 +92,7 @@ namespace WinLaunch
             //copy all files from data to appdata
             if (!MiscUtils.CopyDirectoryOverwrite(
                 PortableDirectory,
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinLaunch"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ClassicLaunch"),
                 true))
             {
                 MessageBox.Show("error while copying files from " + Path.GetFullPath(PortableDirectory));
@@ -116,11 +116,11 @@ namespace WinLaunch
 
             //copy all files from appdata to data
             if (!MiscUtils.CopyDirectoryOverwrite(
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinLaunch"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ClassicLaunch"),
                 PortableDirectory,
                 true))
             {
-                MessageBox.Show("error while copying files from " + Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinLaunch"));
+                MessageBox.Show("error while copying files from " + Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ClassicLaunch"));
                 IsPortable = false;
                 return;
             }
