@@ -5,11 +5,11 @@ using System.Windows;
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die mit einer Assembly verknüpft sind.
-[assembly: AssemblyTitle("WinLaunch")]
-[assembly: AssemblyDescription("macOS Launchpad for Windows")]
+[assembly: AssemblyTitle("ClassicLaunch")]
+[assembly: AssemblyDescription("Classic iOS 4-style application and game launcher for Windows")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("WinLaunch.org")]
-[assembly: AssemblyProduct("WinLaunch - macOS Launchpad for Windows")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ClassicLaunch - WinLaunch community fork")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
