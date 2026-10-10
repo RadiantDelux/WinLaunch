@@ -1,0 +1,66 @@
+name: Build Windows
+
+on:
+  push:
+    branches:
+      - main
+      - feature/**
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Windows Release ${{ matrix.arch }}
+    runs-on: windows-2022
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86, x64]
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Set up NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Set up Visual Studio MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Restore legacy packages.config dependencies
+        shell: pwsh
+        run: |
+          nuget restore WinLaunch.sln -NonInteractive -Verbosity normal
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Build Release
+        shell: pwsh
+        run: |
+          msbuild WinLaunch.sln /m /nologo /v:minimal /p:Configuration=Release /p:Platform=${{ matrix.arch }}
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Prepare downloadable files
+        shell: pwsh
+        run: |
+          $source = if ('${{ matrix.arch }}' -eq 'x64') { 'WinLaunch/bin/x64/Release' } else { 'WinLaunch/bin/Release' }
+          $exe = Join-Path $source 'WinLaunch.exe'
+          if (-not (Test-Path -LiteralPath $exe -PathType Leaf)) {
+            throw "Build completed without the expected executable: $exe"
+          }
+          $destination = 'dist/ClassicLaunch-${{ matrix.arch }}'
+          New-Item -ItemType Directory -Path $destination -Force | Out-Null
+          Copy-Item -Path (Join-Path $source '*') -Destination $destination -Recurse -Force
+          Write-Host "Ready: $destination"
+
+      - name: Upload portable Release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ClassicLaunch-Windows-${{ matrix.arch }}
+          path: dist/ClassicLaunch-${{ matrix.arch }}/
+          if-no-files-found: error
+          retention-days: 30
